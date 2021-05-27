@@ -16,10 +16,8 @@ library(lubridate)    # to handle dates and times
 library(zoo)          # moving window functions
 
 # Import data
-wildschwein <- read_delim("wildschwein_BE_2056.csv",",")
-
-# Convert into sf-object (shape file)
-wildschwein <- st_as_sf(wildschwein, coords=c("E","N"), crs=2056, remove=FALSE)
+wildschwein <- read_delim("wildschwein_BE_2056.csv",",") %>%
+  st_as_sf(coords = c("E", "N"), crs = 2056, remove = FALSE)
 
 ##########################################################
 # Task 1:
