@@ -21,7 +21,7 @@ wildschwein <- read_delim("wildschwein_BE_2056.csv",",") %>%
 
 ##########################################################
 # Task 1: Import and visualize spatial data
-feldaufnahmen <- read_sf("Feldaufnahmen_Fanel.gpkg") 
+feldaufnahmen <- read_sf("Feldaufnahmen_Fanel.gpkg")
 
 # this is a vector-dataset stored in the filetype Geopackage (similar to shapefile)
 # there are 975 polygons with fruit types
@@ -36,7 +36,26 @@ wildschwein_filter <- wildschwein %>%
   filter(Monat == 5 | Monat == 6)
 
 # Overlap wildschwein_filter with feldaufnahmen
+ggplot() +
+  geom_sf(data=feldaufnahmen, aes(fill = Frucht)) +
+  geom_point(data=wildschwein_filter, aes(E, N, colour = TierName)) +
+  theme(legend.position = "none")
 
+# Join
+wildschwein_join <- st_join(x=wildschwein_filter, y=feldaufnahmen)
+
+##########################################################
+# Task 3: Explore annotated trajectories
+
+
+
+##########################################################
+# Task 4: Import and visualize vegetationindex (raster data)
+
+
+
+##########################################################
+# Task 5: Annotate Trajectories from raster data
 
 
 
